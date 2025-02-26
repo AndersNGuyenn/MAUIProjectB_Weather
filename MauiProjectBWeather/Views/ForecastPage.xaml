@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiProjectBWeather.Views.ForecastPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button Text="Refresh" Clicked="Button_Clicked" />
+
+            <!--Your XAML code to present the weather data in a ListView-->
+
+            <ListView x:Name="GroupedForecast" IsGroupingEnabled="true" HasUnevenRows="true">
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Key, StringFormat='{0:dd}th {0:MMMM yyyy}'}" />
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <StackLayout Orientation="Horizontal" Padding="10">
+                                    <Image Source="{Binding Icon}" WidthRequest="50" HeightRequest="50"/>
+                                    <StackLayout Orientation="Vertical" Padding="5">
+                                        <Label Text="{Binding DateTime, StringFormat='{0:HH:mm}'}"/>
+                                        <Label Text="{Binding Description}"/>
+                                        <StackLayout Orientation="Horizontal" Spacing="5">
+                                            <Label Text="{Binding Temperature, StringFormat='Temperature: {0:F1}DegC'}"/>
+                                            <Label Text="{Binding WindSpeed, StringFormat='WindSpeed: {0:F1}m/s'}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
